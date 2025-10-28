@@ -175,7 +175,7 @@ function buildassets() {
         process.stdout.write(`Build panel assets (this can take some minutes)... ${P[x++]}\n`);
         x %= P.length;
     }, 250);
-    exec('yarn install && yarn add html-react-parser && yarn build:production && chown -R www-data:www-data * && php artisan route:clear && php artisan cache:clear && php artisan migrate --seed --force', (err, stdout, stderr) => {
+    exec('yarn install && yarn add html-react-parser && export NODE_OPTIONS=--openssl-legacy-provider && yarn build:production && chown -R www-data:www-data * && php artisan route:clear && php artisan cache:clear && php artisan migrate --seed --force', (err, stdout, stderr) => {
         if (err) {
             process.stdout.write(`\n\x1b[31m\x1b[1m❌ ERROR DURING ASSET BUILDING. (STEP 5)\n Run the yarn build:production command after screen the result and send it with your transaction id to contact@bagou450.com\x1b[0m\n`);
             process.exit(1);
